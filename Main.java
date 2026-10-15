@@ -1,6 +1,7 @@
 public class Main {
+
     public static void main(String[] args) {
-        Usuario usuario = new Usuario("Ana");
+        Usuario usuario = new Usuario("Axel");
         usuario.activarSuscripcion(ServicioStreaming.DISNEY);
         usuario.activarSuscripcion(ServicioStreaming.WARNER);
 
@@ -8,13 +9,22 @@ public class Main {
         CatalogoPeliculas paramount = new SuscripcionDecorator(new CatalogoParamount(), usuario);
         CatalogoPeliculas warner = new SuscripcionDecorator(new CatalogoWarner(), usuario);
 
+        System.out.println("=== Suscripciones iniciales: Disney y Warner ===");
         mostrarCatalogo(disney);
         mostrarCatalogo(paramount);
         mostrarCatalogo(warner);
 
-        System.out.println("\nAna activa Paramount:");
+        System.out.println("\n=== Axel activa Paramount ===");
         usuario.activarSuscripcion(ServicioStreaming.PARAMOUNT);
         mostrarCatalogo(paramount);
+
+        System.out.println("\n=== Axel cancela Disney ===");
+        usuario.cancelarSuscripcion(ServicioStreaming.DISNEY);
+        mostrarCatalogo(disney);
+
+        System.out.println("\n=== Axel vuelve a activar Disney ===");
+        usuario.activarSuscripcion(ServicioStreaming.DISNEY);
+        mostrarCatalogo(disney);
     }
 
     private static void mostrarCatalogo(CatalogoPeliculas catalogo) {
